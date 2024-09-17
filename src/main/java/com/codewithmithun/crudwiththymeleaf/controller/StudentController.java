@@ -84,6 +84,8 @@ public class StudentController {
         existingStudent.setEmail(student.getEmail());
         existingStudent.setDepartment(student.getDepartment());
         existingStudent.setParentsMobile(student.getParentsMobile());
+        existingStudent.setGender(student.getGender());
+        existingStudent.setDob(student.getDob());
 
         // save updated student object
         studentService.updateStudent(existingStudent);

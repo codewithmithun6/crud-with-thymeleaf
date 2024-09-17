@@ -85,7 +85,9 @@
             <th> Last Name</th>
             <th> Email Address </th>
             <th> Department </th>
-            <th> Parents Mobile </th>
+            <th> Mobile </th>
+            <th> Gender </th>
+            <th> Date of Birth </th>
             <th> Actions </th>
         </tr>
         </thead>
@@ -97,6 +99,8 @@
             <td th:text = "${student.email}"></td>
             <td th:text = "${student.department}"></td>
             <td th:text = "${student.parentsMobile}"></td>
+            <td th:text = "${student.gender}"></td>
+            <td th:text = "${student.dob}"></td>
             <td>
 <!--                <a th:href = "@{/students/edit/{id}(id=${student.id})}"-->
 <!--                   class = "btn btn-primary">Update</a>-->
