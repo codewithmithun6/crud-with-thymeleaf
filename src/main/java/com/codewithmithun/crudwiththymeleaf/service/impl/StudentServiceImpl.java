@@ -51,21 +51,6 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll(pageable);
     }
 
-//    public Page<Student> getAllStudents(int page, int pageSize) {
-//        Pageable pageable = PageRequest.of(page - 1, pageSize);
-//        return studentRepository.findAll(pageable);
-//    }
-//
-//    public Page<Student> searchStudents(String keyword, int page, int pageSize) {
-//        Pageable pageable = PageRequest.of(page - 1, pageSize);
-//        return studentRepository.findByFirstNameContainingOrLastNameContainingOrEmailContainingOrParentsMobileContaining(
-//                keyword, keyword,keyword, keyword, pageable);
-//    }
-
-//    public Page<Student> getAllStudents(Pageable pageable) {
-//        return studentRepository.findAll(pageable);
-//    }
-
     public Page<Student> searchStudents(String keyword, Pageable pageable) {
         return studentRepository.findByFirstNameContainingOrLastNameContainingOrEmailContainingOrParentsMobileContaining(
                 keyword, keyword, keyword,keyword, pageable);
