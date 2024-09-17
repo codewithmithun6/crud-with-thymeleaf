@@ -82,6 +82,7 @@ public class StudentController {
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
         existingStudent.setEmail(student.getEmail());
+        existingStudent.setDepartment(student.getDepartment());
         existingStudent.setParentsMobile(student.getParentsMobile());
 
         // save updated student object

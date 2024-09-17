@@ -81,9 +81,10 @@
     <table class = "table table-striped table-bordered">
         <thead class = "table-dark">
         <tr>
-            <th> Student First Name</th>
-            <th> Student Last Name</th>
-            <th> Student Email </th>
+            <th> First Name</th>
+            <th> Last Name</th>
+            <th> Email Address </th>
+            <th> Department </th>
             <th> Parents Mobile </th>
             <th> Actions </th>
         </tr>
@@ -94,6 +95,7 @@
             <td th:text = "${student.firstName}"></td>
             <td th:text = "${student.lastName}"></td>
             <td th:text = "${student.email}"></td>
+            <td th:text = "${student.department}"></td>
             <td th:text = "${student.parentsMobile}"></td>
             <td>
 <!--                <a th:href = "@{/students/edit/{id}(id=${student.id})}"-->
