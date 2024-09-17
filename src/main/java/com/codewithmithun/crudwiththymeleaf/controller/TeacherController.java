@@ -1,6 +1,7 @@
 package com.codewithmithun.crudwiththymeleaf.controller;
 
 
+import com.codewithmithun.crudwiththymeleaf.entities.Student;
 import com.codewithmithun.crudwiththymeleaf.entities.Teacher;
 import com.codewithmithun.crudwiththymeleaf.service.TeacherService;
 import org.springframework.data.domain.Page;
@@ -24,14 +25,24 @@ public class TeacherController {
     @GetMapping("/teachers")
     public String listTeachers(Model model,
                                @RequestParam(defaultValue = "0") int page,
-                               @RequestParam(defaultValue = "5") int size) {
+                               @RequestParam(defaultValue = "5") int size,
+                               @RequestParam(defaultValue = "") String keyword){
 
         Pageable pageable = PageRequest.of(page, size);
-        Page<Teacher> teacherPage = teacherService.getAllTeachers(pageable);
+        Page<Teacher> teacherPage;
+
+        // If search is not empty, search the teachers by name or email or mobile
+        if (keyword != null && !keyword.isEmpty()) {
+            teacherPage = teacherService.searchTeachers(keyword, pageable);
+        } else {
+            teacherPage = teacherService.getAllTeachers(pageable);
+        }
+
 
         model.addAttribute("teachers", teacherPage.getContent());  // Current page data
         model.addAttribute("currentPage", page);                   // Current page number
         model.addAttribute("totalPages", teacherPage.getTotalPages()); // Total pages
+        model.addAttribute("search", keyword);
 
 
         return "teachers";

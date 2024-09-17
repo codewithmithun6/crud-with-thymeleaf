@@ -27,16 +27,25 @@ public class StudentController {
     @GetMapping("/students")
     public String listStudents(Model model,
                                @RequestParam(defaultValue = "0") int page,
-                               @RequestParam(defaultValue = "5") int size) {
+                               @RequestParam(defaultValue = "5") int size,
+                               @RequestParam(defaultValue = "") String keyword){
 
         Pageable pageable = PageRequest.of(page, size);
-        Page<Student> studentPage = studentService.getAllStudents(pageable);
+        Page<Student> studentPage;
+
+
+        // If search is not empty, search the students by name or email
+        if (keyword != null && !keyword.isEmpty()) {
+            studentPage = studentService.searchStudents(keyword, pageable);
+        } else {
+            studentPage = studentService.getAllStudents(pageable);
+        }
 
         model.addAttribute("students", studentPage.getContent());  // Current page data
         model.addAttribute("currentPage", page);                   // Current page number
         model.addAttribute("totalPages", studentPage.getTotalPages()); // Total pages
+        model.addAttribute("search", keyword);
 
-//        model.addAttribute("students", studentService.getAllStudents());
         return "students";
     }
 
@@ -88,18 +97,27 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    // handle pagination
-
-//    @GetMapping("/students/pages")
-//    public String listStudents(Model model,
-//                               @RequestParam(defaultValue = "0") int page,
-//                               @RequestParam(defaultValue = "5") int size) {
-//        Pageable pageable = PageRequest.of(page, size);
-//        Page<Student> studentPage = studentService.getAllStudents(pageable);
+//    @GetMapping
+//    public String viewHomePage(
+//            @RequestParam(value = "search", required = false) String search,
+//            @RequestParam(value = "page", defaultValue = "1") int page,
+//            Model model) {
 //
-//        model.addAttribute("students", studentPage.getContent());  // Current page data
-//        model.addAttribute("currentPage", page);                   // Current page number
-//        model.addAttribute("totalPages", studentPage.getTotalPages()); // Total pages
+//        int pageSize = 10; // Number of items per page
+//        Page<Student> studentPage;
+//
+//        // If search is not empty, search the students by name or email
+//        if (search != null && !search.isEmpty()) {
+//            studentPage = studentService.searchStudents(search, page, pageSize);
+//        } else {
+//            // Otherwise return all students
+//            studentPage = studentService.getAllStudents(page, pageSize);
+//        }
+//
+//        model.addAttribute("studentPage", studentPage);
+//        model.addAttribute("currentPage", page);
+//        model.addAttribute("totalPages", studentPage.getTotalPages());
+//        model.addAttribute("search", search);
 //
 //        return "students";
 //    }

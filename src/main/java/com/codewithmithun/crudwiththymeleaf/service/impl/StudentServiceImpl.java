@@ -4,6 +4,7 @@ import com.codewithmithun.crudwiththymeleaf.entities.Student;
 import com.codewithmithun.crudwiththymeleaf.repositiries.StudentRepository;
 import com.codewithmithun.crudwiththymeleaf.service.StudentService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,26 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Page<Student> getAllStudents(Pageable pageable) {
         return studentRepository.findAll(pageable);
+    }
+
+//    public Page<Student> getAllStudents(int page, int pageSize) {
+//        Pageable pageable = PageRequest.of(page - 1, pageSize);
+//        return studentRepository.findAll(pageable);
+//    }
+//
+//    public Page<Student> searchStudents(String keyword, int page, int pageSize) {
+//        Pageable pageable = PageRequest.of(page - 1, pageSize);
+//        return studentRepository.findByFirstNameContainingOrLastNameContainingOrEmailContainingOrParentsMobileContaining(
+//                keyword, keyword,keyword, keyword, pageable);
+//    }
+
+//    public Page<Student> getAllStudents(Pageable pageable) {
+//        return studentRepository.findAll(pageable);
+//    }
+
+    public Page<Student> searchStudents(String keyword, Pageable pageable) {
+        return studentRepository.findByFirstNameContainingOrLastNameContainingOrEmailContainingOrParentsMobileContaining(
+                keyword, keyword, keyword,keyword, pageable);
     }
 
 }

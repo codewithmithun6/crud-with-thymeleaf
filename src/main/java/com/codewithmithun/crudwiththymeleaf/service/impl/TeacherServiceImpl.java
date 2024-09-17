@@ -1,6 +1,7 @@
 package com.codewithmithun.crudwiththymeleaf.service.impl;
 
 
+import com.codewithmithun.crudwiththymeleaf.entities.Student;
 import com.codewithmithun.crudwiththymeleaf.entities.Teacher;
 import com.codewithmithun.crudwiththymeleaf.repositiries.TeacherRepository;
 import com.codewithmithun.crudwiththymeleaf.service.TeacherService;
@@ -49,6 +50,13 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Page<Teacher> getAllTeachers(Pageable pageable) {
         return teacherRepository.findAll(pageable);
+    }
+
+
+    @Override
+    public Page<Teacher> searchTeachers(String keyword, Pageable pageable) {
+        return teacherRepository.findByFirstNameContainingOrLastNameContainingOrEmailContainingOrMobileNumberContaining(
+                keyword, keyword, keyword,keyword, pageable);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.codewithmithun.crudwiththymeleaf.service;
 
+import com.codewithmithun.crudwiththymeleaf.entities.Student;
 import com.codewithmithun.crudwiththymeleaf.entities.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,4 +20,6 @@ public interface TeacherService {
     void deleteTeacherById(Long id);
 
     public Page<Teacher> getAllTeachers(Pageable pageable);
+
+    public Page<Teacher> searchTeachers(String keyword, Pageable pageable);
 }
