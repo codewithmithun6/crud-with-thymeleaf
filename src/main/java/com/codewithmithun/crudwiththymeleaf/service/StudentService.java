@@ -19,7 +19,5 @@ public interface StudentService {
     void deleteStudentById(Long id);
 
     public Page<Student> getAllStudents(Pageable pageable);
-
-//    public Page<Student> getAllStudents(int page, int pageSize);
     public Page<Student> searchStudents(String keyword, Pageable pageable);
 }

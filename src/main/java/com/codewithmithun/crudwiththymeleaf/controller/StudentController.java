@@ -98,29 +98,4 @@ public class StudentController {
         return "redirect:/students";
     }
 
-//    @GetMapping
-//    public String viewHomePage(
-//            @RequestParam(value = "search", required = false) String search,
-//            @RequestParam(value = "page", defaultValue = "1") int page,
-//            Model model) {
-//
-//        int pageSize = 10; // Number of items per page
-//        Page<Student> studentPage;
-//
-//        // If search is not empty, search the students by name or email
-//        if (search != null && !search.isEmpty()) {
-//            studentPage = studentService.searchStudents(search, page, pageSize);
-//        } else {
-//            // Otherwise return all students
-//            studentPage = studentService.getAllStudents(page, pageSize);
-//        }
-//
-//        model.addAttribute("studentPage", studentPage);
-//        model.addAttribute("currentPage", page);
-//        model.addAttribute("totalPages", studentPage.getTotalPages());
-//        model.addAttribute("search", search);
-//
-//        return "students";
-//    }
-
 }
