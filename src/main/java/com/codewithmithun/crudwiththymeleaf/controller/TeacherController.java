@@ -82,6 +82,8 @@ public class TeacherController {
         existingTeacher.setLastName(teacher.getLastName());
         existingTeacher.setEmail(teacher.getEmail());
         existingTeacher.setMobileNumber(teacher.getMobileNumber());
+        existingTeacher.setGender(teacher.getGender());
+        existingTeacher.setDob(teacher.getDob());
         existingTeacher.setSubject(teacher.getSubject());
 
         // save updated teacher object

@@ -89,15 +89,24 @@
                                 placeholder="Enter Parents Mobile"
                         />
                     </div>
-                    <div class ="form-group">
-                        <label> Student Gender </label>
-                        <input
-                                type = "text"
-                                name = "gender"
-                                th:field = "*{gender}"
-                                class = "form-control"
-                                placeholder="Enter Student Gender"
-                        />
+<!--                    <div class ="form-group">-->
+<!--                        <label> Student Gender </label>-->
+<!--                        <input-->
+<!--                                type = "text"-->
+<!--                                name = "gender"-->
+<!--                                th:field = "*{gender}"-->
+<!--                                class = "form-control"-->
+<!--                                placeholder="Enter Student Gender"-->
+<!--                        />-->
+<!--                    </div>-->
+                    <!-- Gender Dropdown -->
+                    <div>
+                        <label for="gender">Gender:</label>
+                        <select id="gender" th:field="*{gender}">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other</option>
+                        </select>
                     </div>
 
                     <div class ="form-group">

@@ -77,10 +77,12 @@
     <table class = "table table-striped table-bordered">
         <thead class = "table-dark">
         <tr>
-            <th> Teacher First Name</th>
-            <th> Teacher Last Name</th>
-            <th> Teacher Email </th>
-            <th> Mobile Number </th>
+            <th> First Name</th>
+            <th> Last Name</th>
+            <th> Email Address </th>
+            <th> Mobile </th>
+            <th> Gender </th>
+            <th> Date of Birth </th>
             <th> Subject </th>
             <th> Actions </th>
         </tr>
@@ -92,6 +94,8 @@
             <td th:text = "${teacher.lastName}"></td>
             <td th:text = "${teacher.email}"></td>
             <td th:text = "${teacher.mobileNumber}"></td>
+            <td th:text = "${teacher.gender}"></td>
+            <td th:text = "${teacher.dob}"></td>
             <td th:text = "${teacher.subject}"></td>
             <td>
 <!--                <a th:href = "@{/teachers/edit/{id}(id=${teacher.id})}"-->

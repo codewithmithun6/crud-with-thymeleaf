@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -29,6 +31,8 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Teacher saveTeacher(Teacher teacher) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate dob = LocalDate.parse(teacher.getDob(), formatter);
         return teacherRepository.save(teacher);
     }
 

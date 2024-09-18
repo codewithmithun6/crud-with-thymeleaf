@@ -1,6 +1,7 @@
 package com.codewithmithun.crudwiththymeleaf.entities;
 
 
+import com.codewithmithun.crudwiththymeleaf.enumData.Gender;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -33,8 +34,11 @@ public class Student {
     @Column(name = "parents_mobile")
     private String parentsMobile;
 
-    @Column(name = "gender")
-    private String gender;
+//    @Column(name = "gender")
+//    private String gender;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     // Date of Birth in DDMMYYYY format
     @Pattern(regexp = "\\d{2}-\\d{2}-\\d{4}", message = "Date of birth must be in DD-MM-YYYY format")
