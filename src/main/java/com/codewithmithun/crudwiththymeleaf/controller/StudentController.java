@@ -1,7 +1,9 @@
 package com.codewithmithun.crudwiththymeleaf.controller;
 
 import com.codewithmithun.crudwiththymeleaf.entities.Student;
+import com.codewithmithun.crudwiththymeleaf.service.AddressService;
 import com.codewithmithun.crudwiththymeleaf.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class StudentController {
 
     private StudentService studentService;
+    @Autowired
+    private AddressService addressService;
 
     public StudentController(StudentService studentService) {
         super();
@@ -27,16 +31,25 @@ public class StudentController {
     @GetMapping("/students")
     public String listStudents(Model model,
                                @RequestParam(defaultValue = "0") int page,
-                               @RequestParam(defaultValue = "5") int size) {
+                               @RequestParam(defaultValue = "5") int size,
+                               @RequestParam(defaultValue = "") String keyword){
 
         Pageable pageable = PageRequest.of(page, size);
-        Page<Student> studentPage = studentService.getAllStudents(pageable);
+        Page<Student> studentPage;
+
+
+        // If search is not empty, search the students by name or email
+        if (keyword != null && !keyword.isEmpty()) {
+            studentPage = studentService.searchStudents(keyword, pageable);
+        } else {
+            studentPage = studentService.getAllStudents(pageable);
+        }
 
         model.addAttribute("students", studentPage.getContent());  // Current page data
         model.addAttribute("currentPage", page);                   // Current page number
         model.addAttribute("totalPages", studentPage.getTotalPages()); // Total pages
+        model.addAttribute("search", keyword);
 
-//        model.addAttribute("students", studentService.getAllStudents());
         return "students";
     }
 
@@ -61,6 +74,24 @@ public class StudentController {
         model.addAttribute("student", studentService.getStudentById(id));
         return "edit_student";
     }
+    // view student
+    @GetMapping("/students/view/{id}")
+    public String viewStudentForm(@PathVariable Long id, Model model) {
+        System.out.println("Student: "+studentService.getStudentById(id));
+        model.addAttribute("student", studentService.getStudentById(id));
+        return "view_student";
+    }
+
+
+    // view student
+//    @GetMapping("/students/view/{id}/addresses/{addressId}")
+//    public String viewStudentForm(@PathVariable Long id,@PathVariable Long addressId, Model model) {
+//        System.out.println("Student: "+studentService.getStudentById(id));
+//        System.out.println("Student: "+studentService.getStudentById(id));
+//        model.addAttribute("student", studentService.getStudentById(id));
+//        model.addAttribute("address", addressService.getAddressById(addressId));
+//        return "view_student";
+//    }
 
     @PostMapping("/students/{id}")
     public String updateStudent(@PathVariable Long id,
@@ -73,7 +104,10 @@ public class StudentController {
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
         existingStudent.setEmail(student.getEmail());
+        existingStudent.setDepartment(student.getDepartment());
         existingStudent.setParentsMobile(student.getParentsMobile());
+        existingStudent.setGender(student.getGender());
+        existingStudent.setDob(student.getDob());
 
         // save updated student object
         studentService.updateStudent(existingStudent);
@@ -87,21 +121,5 @@ public class StudentController {
         studentService.deleteStudentById(id);
         return "redirect:/students";
     }
-
-    // handle pagination
-
-//    @GetMapping("/students/pages")
-//    public String listStudents(Model model,
-//                               @RequestParam(defaultValue = "0") int page,
-//                               @RequestParam(defaultValue = "5") int size) {
-//        Pageable pageable = PageRequest.of(page, size);
-//        Page<Student> studentPage = studentService.getAllStudents(pageable);
-//
-//        model.addAttribute("students", studentPage.getContent());  // Current page data
-//        model.addAttribute("currentPage", page);                   // Current page number
-//        model.addAttribute("totalPages", studentPage.getTotalPages()); // Total pages
-//
-//        return "students";
-//    }
 
 }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Student Management System</title>
+    <title>Student Details</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <!-- Ensure proper CSS path -->
+<!--    <link rel="stylesheet" th:href="@{/css/styles.css}" />-->
+
+    <script>
+        function confirmUpdate() {
+            return confirm('Are you sure you want to Update this student?');
+        }
+    </script>
+</head>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Student Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/students}">Student Management</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+
+    <title>Student Details</title>
+    <style type="text/css">
+        span {
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+        }
+    </style>
+    </head>
+    <body>
+    <div align="center">
+        <h2>Student Details</h2>
+        <span>First Name:</span><span th:text="${student.firstName}"></span><br/>
+        <span>Last Name:</span><span th:text="${student.lastName}"></span><br/>
+        <span>Email:</span><span th:text="${student.email}"></span><br/>
+        <span>Mobile:</span><span th:text="${student.parentsMobile}"></span><br/>
+        <span>Gender:</span><span th:text="${student.gender}"></span><br/>
+        <span>Date of Birth</span><span th:text="${student.dob}"></span><br/>
+        <span>Department:</span><span th:text="${student.department}"></span><br/>
+        <h3 align="center">Student Address</h3>
+        <span>Sate:</span><span th:text="${student.address.state}"></span><br/>
+        <span>City:</span><span th:text="${student.address.city}"></span><br/>
+        <span>Street:</span><span th:text="${student.address.street}"></span><br/>
+        <span>PinCode:</span><span th:text="${student.address.pinCode}"></span><br/>
+        <span>Country:</span><span th:text="${student.address.country}"></span><br/>
+        <span>Full Address:</span><span th:text="${student.address.fullAddress}"></span><br/>
+
+
+    </div>
+    <div align="center">
+        <a href="/students" class="btn btn-primary">Back to List</a>
+<!--        <a href="/addresses" class="btn btn-success">Update Address</a>-->
+
+        <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/addresses/edit/{id}(id=${student.address.id})}">
+            Update Address</a>
+    </div>
+</body>
+
+
+
+
+</html>

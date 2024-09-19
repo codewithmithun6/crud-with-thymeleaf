@@ -1,0 +1,54 @@
+ <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+        .pagination li {
+            margin: 0 5px;
+        }
+        .pagination a {
+            text-decoration: none;
+            padding: 8px 12px;
+            color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .pagination a.active {
+            font-weight: bold;
+            text-decoration: underline;
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        .pagination a:hover {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+
+         /* Style for the header to position the time on the right */
+                .header {
+                    position: relative; /* Make the header a positioned element */
+                    width: 100%; /* Ensure the header takes full width of the page */
+                    padding: 10px;
+                    background-color: #fff; /* White background */
+                    border-bottom: 1px solid #ddd; /* Optional border for separation */
+                }
+
+                /* Style for the time element */
+                .time {
+                    position: absolute; /* Absolute positioning */
+                    right: 10px; /* Align the time 10px from the right edge */
+                    top: 5%; /* Align it vertically in the center */
+                    transform: translateY(-50%); /* Center the element vertically */
+                    font-size: 16px;
+                    color: #333;
+                    background-color: #b3ffe0; /* White background */
+                    padding: 5px 10px; /* Padding for spacing */
+                    border-radius: 5px; /* Optional: rounded corners */
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: shadow for effect */
+                }
+    </style>
