@@ -26,6 +26,12 @@
         }
     </script>
 
+    <script>
+        function confirmView() {
+            return confirm('Are you sure you want to View this student?');
+        }
+    </script>
+
 </head>
 
 
@@ -112,6 +118,14 @@
                      Update</a>
                 <a href="#" class = "btn btn-danger" onclick="return confirmDelete();" th:href="@{/students/{id}(id=${student.id})}">
                      Delete</a>
+                <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/students/view/{id}(id=${student.id})}">
+                    View</a>
+
+<!--                <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/students/view/{id}(id=${student.id})/addresses/{id}(id=${address.id})}">-->
+<!--                    View</a>-->
+
+<!--                <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/students/view/{id}(id=${student.id})/addresses/1">-->
+<!--                    View</a>-->
             </td>
         </tr>
         </tbody>
@@ -154,5 +168,7 @@
     setInterval(updateTime, 1000);
     updateTime();  // Initial call to display time immediately on page load
 </script>
+
+
 </body>
 </html>

@@ -1,7 +1,9 @@
 package com.codewithmithun.crudwiththymeleaf.controller;
 
 import com.codewithmithun.crudwiththymeleaf.entities.Student;
+import com.codewithmithun.crudwiththymeleaf.service.AddressService;
 import com.codewithmithun.crudwiththymeleaf.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class StudentController {
 
     private StudentService studentService;
+    @Autowired
+    private AddressService addressService;
 
     public StudentController(StudentService studentService) {
         super();
@@ -70,6 +74,24 @@ public class StudentController {
         model.addAttribute("student", studentService.getStudentById(id));
         return "edit_student";
     }
+    // view student
+    @GetMapping("/students/view/{id}")
+    public String viewStudentForm(@PathVariable Long id, Model model) {
+        System.out.println("Student: "+studentService.getStudentById(id));
+        model.addAttribute("student", studentService.getStudentById(id));
+        return "view_student";
+    }
+
+
+    // view student
+//    @GetMapping("/students/view/{id}/addresses/{addressId}")
+//    public String viewStudentForm(@PathVariable Long id,@PathVariable Long addressId, Model model) {
+//        System.out.println("Student: "+studentService.getStudentById(id));
+//        System.out.println("Student: "+studentService.getStudentById(id));
+//        model.addAttribute("student", studentService.getStudentById(id));
+//        model.addAttribute("address", addressService.getAddressById(addressId));
+//        return "view_student";
+//    }
 
     @PostMapping("/students/{id}")
     public String updateStudent(@PathVariable Long id,
