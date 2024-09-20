@@ -14,23 +14,6 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 
-    <script>
-        function confirmUpdate() {
-            return confirm('Are you sure you want to Update this student?');
-        }
-    </script>
-
-    <script>
-        function confirmDelete() {
-            return confirm('Are you sure you want to delete this student?');
-        }
-    </script>
-
-    <script>
-        function confirmView() {
-            return confirm('Are you sure you want to View this student?');
-        }
-    </script>
 
 </head>
 
@@ -99,6 +82,7 @@
         </thead>
 
         <tbody>
+
         <tr th:each = "student: ${students}">
             <td th:text = "${student.firstName}"></td>
             <td th:text = "${student.lastName}"></td>
@@ -108,23 +92,28 @@
             <td th:text = "${student.gender}"></td>
             <td th:text = "${student.dob}"></td>
             <td>
+
+
 <!--                <a th:href = "@{/students/edit/{id}(id=${student.id})}"-->
 <!--                   class = "btn btn-primary">Update</a>-->
 
 <!--                <a th:href = "@{/students/{id}(id=${student.id})}"-->
 <!--                   class = "btn btn-danger">Delete</a>-->
 
-                <a href="#" class = "btn btn-primary" onclick="return confirmUpdate();" th:href="@{/students/edit/{id}(id=${student.id})}">
+                <a href="#" class = "btn btn-primary" onclick="return confirmStudentUpdate();" th:href="@{/students/edit/{id}(id=${student.id})}">
                      Update</a>
-                <a href="#" class = "btn btn-danger" onclick="return confirmDelete();" th:href="@{/students/{id}(id=${student.id})}">
+                <a href="#" class = "btn btn-danger" onclick="return confirmStudentDelete();" th:href="@{/students/{id}(id=${student.id})}">
                      Delete</a>
-                <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/students/view/{id}(id=${student.id})}">
+                <a href="#" class = "btn btn-success" onclick="return confirmStudentView();" th:href="@{/students/view/{id}(id=${student.id})}">
                     View</a>
 
-<!--                <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/students/view/{id}(id=${student.id})/addresses/{id}(id=${address.id})}">-->
-<!--                    View</a>-->
+<!--                <a href="#" class="btn btn-success" onclick="return confirmStudentView();"-->
+<!--                   th:href="@{/students/view/{studentId}/addresses/{addressId}(studentId=${student.id}, addressId=${address.id})}">-->
+<!--                    View-->
+<!--                </a>-->
 
-<!--                <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/students/view/{id}(id=${student.id})/addresses/1">-->
+
+                <!--                <a href="#" class = "btn btn-success" onclick="return confirmStudentView();" th:href="@{/students/view/{id}(id=${student.id})/addresses/1">-->
 <!--                    View</a>-->
             </td>
         </tr>
@@ -156,19 +145,8 @@
     </div>
 
 </div>
-<!-- JavaScript to update time -->
-<script>
-    function updateTime() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString();
-        document.getElementById('current-time').innerText = timeString;
-    }
 
-    // Update the time every second
-    setInterval(updateTime, 1000);
-    updateTime();  // Initial call to display time immediately on page load
-</script>
-
+<script src="" th:src="@{/js/scripts.js}"></script>
 
 </body>
 </html>
