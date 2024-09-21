@@ -16,6 +16,16 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public Address saveAddress(Address address) {
+        return addressRepository.save(address);
+    }
+
+    @Override
+    public Address getAddressByStudentId(Long studentId) {
+        return addressRepository.getAddressByStudentId(studentId);
+    }
+
+    @Override
     public Address getAddressById(Long id) {
         return addressRepository.findById(id).get();
     }

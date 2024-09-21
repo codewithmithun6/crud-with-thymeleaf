@@ -1,5 +1,6 @@
 package com.codewithmithun.crudwiththymeleaf.controller;
 
+import com.codewithmithun.crudwiththymeleaf.entities.Address;
 import com.codewithmithun.crudwiththymeleaf.entities.Student;
 import com.codewithmithun.crudwiththymeleaf.service.AddressService;
 import com.codewithmithun.crudwiththymeleaf.service.StudentService;
@@ -75,23 +76,26 @@ public class StudentController {
         return "edit_student";
     }
     // view student
-    @GetMapping("/students/view/{id}")
-    public String viewStudentForm(@PathVariable Long id, Model model) {
-        System.out.println("Student: "+studentService.getStudentById(id));
-        model.addAttribute("student", studentService.getStudentById(id));
+    @GetMapping("/students/view/{studentId}")
+    public String viewStudentForm(@PathVariable Long studentId, Model model) {
+
+        System.out.println("Student: "+studentService.getStudentById(studentId));
+        System.out.println("address: "+addressService.getAddressByStudentId(studentId));
+        model.addAttribute("student", studentService.getStudentById(studentId));
+        model.addAttribute("address", addressService.getAddressByStudentId(studentId));
         return "view_student";
     }
 
 
     // view student
-//    @GetMapping("/students/view/{id}/addresses/{addressId}")
-//    public String viewStudentForm(@PathVariable Long id,@PathVariable Long addressId, Model model) {
-//        System.out.println("Student: "+studentService.getStudentById(id));
-//        System.out.println("Student: "+studentService.getStudentById(id));
-//        model.addAttribute("student", studentService.getStudentById(id));
-//        model.addAttribute("address", addressService.getAddressById(addressId));
-//        return "view_student";
-//    }
+    @GetMapping("/students/view/{id}/addresses/{addressId}")
+    public String viewStudentForm(@PathVariable Long id,@PathVariable Long addressId, Model model) {
+        System.out.println("Student: "+studentService.getStudentById(id));
+        System.out.println("Student: "+studentService.getStudentById(id));
+        model.addAttribute("student", studentService.getStudentById(id));
+        model.addAttribute("address", addressService.getAddressById(addressId));
+        return "view_student";
+    }
 
     @PostMapping("/students/{id}")
     public String updateStudent(@PathVariable Long id,

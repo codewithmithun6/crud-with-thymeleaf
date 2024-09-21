@@ -9,7 +9,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     <!-- Ensure proper CSS path -->
-<!--    <link rel="stylesheet" th:href="@{/css/styles.css}" />-->
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
 
     <script>
         function confirmUpdate() {
@@ -58,26 +58,31 @@
         <span>Gender:</span><span th:text="${student.gender}"></span><br/>
         <span>Date of Birth</span><span th:text="${student.dob}"></span><br/>
         <span>Department:</span><span th:text="${student.department}"></span><br/>
-        <h3 align="center">Student Address</h3>
-        <span>Sate:</span><span th:text="${student.address.state}"></span><br/>
-        <span>City:</span><span th:text="${student.address.city}"></span><br/>
-        <span>Street:</span><span th:text="${student.address.street}"></span><br/>
-        <span>PinCode:</span><span th:text="${student.address.pinCode}"></span><br/>
-        <span>Country:</span><span th:text="${student.address.country}"></span><br/>
-        <span>Full Address:</span><span th:text="${student.address.fullAddress}"></span><br/>
-
 
     </div>
+
+    <div th:if="${address != null}" align="center">
+
+        <h3 align="center">Student Address</h3>
+
+        <span>State:</span><span th:text="${address.state}"></span><br/>
+        <span>City:</span><span th:text="${address.city}"></span><br/>
+        <span>Street:</span><span th:text="${address.street}"></span><br/>
+        <span>PinCode:</span><span th:text="${address.pinCode}"></span><br/>
+        <span>Country:</span><span th:text="${address.country}"></span><br/>
+        <span>Full Address:</span><span th:text="${address.fullAddress}"></span><br/>
+    </div>
+
+
+
+
     <div align="center">
         <a href="/students" class="btn btn-primary">Back to List</a>
-<!--        <a href="/addresses" class="btn btn-success">Update Address</a>-->
 
-        <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/addresses/edit/{id}(id=${student.address.id})}">
-            Update Address</a>
+        <a href="#" class = "btn btn-success" onclick="return confirmUpdateAddress();" th:href="@{/addresses/new/{id}(id=${student.id})}">
+        Update Address</a>
     </div>
+
+    <script src="" th:src="@{/js/scripts.js}"></script>
 </body>
-
-
-
-
 </html>

@@ -7,6 +7,9 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
+
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -34,15 +37,19 @@
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class = "text-center"> Update Address </h1>
             <div class = "card-body">
-                <form th:action="@{/addresses/{id} (id=${address.id})}" th:object = "${address}" method="POST">
+<!--                <form th:action="@{/addresses}" th:object = "${address}" method="POST">-->
+<!--                <form th:action=@{/addresses/{id} (id=${student.id})}" th:object = "${address}" method="POST">-->
+                    <form th:action="@{/addresses/{id}(id=${sId})}" th:object="${address}" method="POST">
+
+
                     <div class ="form-group">
                         <label> State </label>
                         <input
                                 type = "text"
-                                name = "state"
+                                name = "State"
                                 th:field = "*{state}"
                                 class = "form-control"
-                                placeholder="Enter state"
+                                placeholder="Enter State"
                         />
                     </div>
 
@@ -53,7 +60,7 @@
                                 name = "city"
                                 th:field = "*{city}"
                                 class = "form-control"
-                                placeholder="Enter City"
+                                placeholder="Enter city"
                         />
                     </div>
 
@@ -89,6 +96,7 @@
                                 placeholder="Enter Country"
                         />
                     </div>
+
                     <div class ="form-group">
                         <label> Full Address </label>
                         <input
@@ -96,22 +104,23 @@
                                 name = "fullAddress"
                                 th:field = "*{fullAddress}"
                                 class = "form-control"
-                                placeholder="Enter fullAddress"
+                                placeholder="Enter Full Address"
                         />
                     </div>
 
 
 
                     <div class = "box-footer">
-                        <button type="submit" class = "btn btn-success">
-                            Update
+                        <button type="submit" class = "btn btn-primary">
+                            Submit
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
 </div>
+
+<script src="" th:src="@{/js/scripts.js}"></script>
 </body>
 </html>

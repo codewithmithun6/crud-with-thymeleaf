@@ -28,4 +28,8 @@ public class Address {
     @Column(name = "full_address")
     private String fullAddress;
 
+    @OneToOne(cascade = CascadeType.ALL)  // Automatically manage address persistence
+    @JoinColumn(name = "student_id")      // Foreign key in Student table
+    private Student student;
+
 }
