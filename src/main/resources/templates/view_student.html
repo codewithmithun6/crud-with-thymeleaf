@@ -58,10 +58,13 @@
         <span>Gender:</span><span th:text="${student.gender}"></span><br/>
         <span>Date of Birth</span><span th:text="${student.dob}"></span><br/>
         <span>Department:</span><span th:text="${student.department}"></span><br/>
-        <h3 align="center">Student Address</h3>
+
     </div>
 
-    <div th:if="${address.id != ''} or ${address.id != null}">
+    <div th:if="${address != null}" align="center">
+
+        <h3 align="center">Student Address</h3>
+
         <span>State:</span><span th:text="${address.state}"></span><br/>
         <span>City:</span><span th:text="${address.city}"></span><br/>
         <span>Street:</span><span th:text="${address.street}"></span><br/>
@@ -75,7 +78,10 @@
 
     <div align="center">
         <a href="/students" class="btn btn-primary">Back to List</a>
-        <a href="/students" class="btn btn-success">Update Address</a>
+<!--        <a href="/students" class="btn btn-success">Update Address1</a>-->
+
+                <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/addresses/new/{id}(id=${student.id})}">
+                    Update Address</a>
 
 <!--        <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/addresses/edit/{id}(id=${address.id})}">-->
 <!--            Update Address</a>-->
