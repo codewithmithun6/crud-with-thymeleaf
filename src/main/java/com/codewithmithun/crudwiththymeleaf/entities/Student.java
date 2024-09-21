@@ -44,8 +44,5 @@ public class Student {
     @Pattern(regexp = "\\d{2}-\\d{2}-\\d{4}", message = "Date of birth must be in DD-MM-YYYY format")
     private String dob;
 
-//    @OneToOne(cascade = CascadeType.ALL)  // Automatically manage address persistence
-//    @JoinColumn(name = "address_id")      // Foreign key in Student table
-//    private Address address;
 
 }

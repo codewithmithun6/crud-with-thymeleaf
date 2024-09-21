@@ -14,7 +14,6 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 
-
 </head>
 
 
@@ -93,13 +92,6 @@
             <td th:text = "${student.dob}"></td>
             <td>
 
-
-<!--                <a th:href = "@{/students/edit/{id}(id=${student.id})}"-->
-<!--                   class = "btn btn-primary">Update</a>-->
-
-<!--                <a th:href = "@{/students/{id}(id=${student.id})}"-->
-<!--                   class = "btn btn-danger">Delete</a>-->
-
                 <a href="#" class = "btn btn-primary" onclick="return confirmStudentUpdate();" th:href="@{/students/edit/{id}(id=${student.id})}">
                      Update</a>
                 <a href="#" class = "btn btn-danger" onclick="return confirmStudentDelete();" th:href="@{/students/{id}(id=${student.id})}">
@@ -107,14 +99,6 @@
                 <a href="#" class = "btn btn-success" onclick="return confirmStudentView();" th:href="@{/students/view/{id}(id=${student.id})}">
                     View</a>
 
-<!--                <a href="#" class="btn btn-success" onclick="return confirmStudentView();"-->
-<!--                   th:href="@{/students/view/{studentId}/addresses/{addressId}(studentId=${student.id}, addressId=${address.id})}">-->
-<!--                    View-->
-<!--                </a>-->
-
-
-                <!--                <a href="#" class = "btn btn-success" onclick="return confirmStudentView();" th:href="@{/students/view/{id}(id=${student.id})/addresses/1">-->
-<!--                    View</a>-->
             </td>
         </tr>
         </tbody>

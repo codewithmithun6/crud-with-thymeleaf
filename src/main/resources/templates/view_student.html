@@ -9,7 +9,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     <!-- Ensure proper CSS path -->
-<!--    <link rel="stylesheet" th:href="@{/css/styles.css}" />-->
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
 
     <script>
         function confirmUpdate() {
@@ -78,17 +78,11 @@
 
     <div align="center">
         <a href="/students" class="btn btn-primary">Back to List</a>
-<!--        <a href="/students" class="btn btn-success">Update Address1</a>-->
 
-                <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/addresses/new/{id}(id=${student.id})}">
-                    Update Address</a>
-
-<!--        <a href="#" class = "btn btn-success" onclick="return confirmView();" th:href="@{/addresses/edit/{id}(id=${address.id})}">-->
-<!--            Update Address</a>-->
+        <a href="#" class = "btn btn-success" onclick="return confirmUpdateAddress();" th:href="@{/addresses/new/{id}(id=${student.id})}">
+        Update Address</a>
     </div>
+
+    <script src="" th:src="@{/js/scripts.js}"></script>
 </body>
-
-
-
-
 </html>

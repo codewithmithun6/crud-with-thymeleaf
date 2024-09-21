@@ -15,19 +15,23 @@
             }
 
             function confirmStudentDelete() {
-                return confirm('Are you sure you want to delete this student?');
+                return confirm('Are you sure you want to delete this Student?');
             }
 
             function confirmStudentView() {
-                return confirm('Are you sure you want to View this student?');
+                return confirm('Are you sure you want to View this Student?');
             }
 
             function confirmTeacherUpdate() {
-                return confirm('Are you sure you want to Update this teacher?');
+                return confirm('Are you sure you want to Update this Teacher?');
             }
 
              function confirmTeacherDelete() {
-                return confirm('Are you sure you want to delete this teacher?');
+                return confirm('Are you sure you want to delete this Teacher?');
              }
+
+              function confirmUpdateAddress() {
+                return confirm('Are you sure you want to update this Address?');
+              }
 
 

@@ -21,63 +21,6 @@ public class AddressController {
     @Autowired
     private StudentService studentService;
 
-//    @PostMapping("/addresses/{id}")
-//    public String updateAddress(@PathVariable Long id,
-//                                @ModelAttribute("address") Address address,
-//                                Model model) {
-//
-//        // get student from database by id
-//        Address existingAddress = addressService.getAddressById(id);
-//        existingAddress.setId(id);
-//        existingAddress.setState(address.getState());
-//        existingAddress.setCity(address.getCity());
-//        existingAddress.setStreet(address.getStreet());
-//        existingAddress.setPinCode(address.getPinCode());
-//        existingAddress.setCountry(address.getCountry());
-//        existingAddress.setFullAddress(address.getFullAddress());
-//
-//
-//        // save updated student object
-//        addressService.updateAddress(existingAddress);
-//        return "redirect:/students";
-//    }
-
-    //save address
-//    @PostMapping("/addresses/{studentId}")
-//    public String saveAddress(@PathVariable("studentId") Long studentId,@ModelAttribute("address") Address address) {
-//        Address address1 = addressService.saveAddress(address);
-//        Long addressId = address1.getId();
-//        Address address2 = addressService.getAddressById(addressId);
-//
-//
-//        return "redirect:/students";
-//    }
-
-
-    // create new address if address is not available
-//    @PostMapping("/addresses/{studentId}")
-//    public String saveAddress(@PathVariable("studentId") Long studentId, @ModelAttribute("address") Address address) {
-//        // Fetch the student by studentId
-//        Student student = studentService.getStudentById(studentId);
-//
-//        if (student == null) {
-//            // Handle the case where the student doesn't exist
-//            throw new RuntimeException("Student not found with id: " + studentId);
-//        }
-//
-//        // if address is available then update the address otherwise crate new address
-//        addressService.getAddressById()
-//
-//        // Save the address
-//        Address address1 = addressService.saveAddress(address);
-//        address1.setStudent(student);
-//
-//        addressService.saveAddress(address1);
-//
-//        // Redirect to the student details or list
-//        return "redirect:/students";
-//    }
-
     @PostMapping("/addresses/{studentId}")
     public String saveOrUpdateAddress(@PathVariable("studentId") Long studentId, @ModelAttribute("address") Address address) {
         // Fetch the student by studentId
