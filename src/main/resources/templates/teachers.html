@@ -3,36 +3,10 @@
 <head>
 
 <!--    css-->
-    <title>Teacher List</title>    <style>
-        .pagination {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-        }
-        .pagination li {
-            margin: 0 5px;
-        }
-        .pagination a {
-            text-decoration: none;
-            padding: 8px 12px;
-            color: #007bff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .pagination a.active {
-            font-weight: bold;
-            text-decoration: underline;
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-        .pagination a:hover {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-    </style>
+    <title>Teacher List</title>
+
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
     <meta charset="ISO-8859-1">
     <title>Teacher Management System</title>
@@ -41,17 +15,6 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 
-    <script>
-        function confirmUpdate() {
-            return confirm('Are you sure you want to Update this teacher?');
-        }
-    </script>
-
-    <script>
-        function confirmDelete() {
-            return confirm('Are you sure you want to delete this teacher?');
-        }
-    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -72,6 +35,14 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/teachers}">Teacher Management</a>
             </li>
+
+            <li>
+                <!-- Search Form -->
+                <form th:action="@{/teachers}" method="get">
+                    <input type="text" name="keyword" placeholder="Search teachers..." th:value="${keyword}" />
+                    <button type="submit">Search</button>
+                </form>
+            </li>
         </ul>
     </div>
 </nav>
@@ -84,15 +55,23 @@
     <div class = "row">
         <div class = "col-lg-3">
             <a th:href = "@{/teachers/new}" class = "btn btn-primary btn-sm mb-3"> Add Teacher</a>
+            <a th:href = "@{/teachers}" class = "btn btn-primary btn-sm mb-3"> Show All Teachers</a>
+        </div>
+
+        <div class="header">
+            <!-- Time Display -->
+            <div class="time" id="current-time"></div>
         </div>
     </div>
     <table class = "table table-striped table-bordered">
         <thead class = "table-dark">
         <tr>
-            <th> Teacher First Name</th>
-            <th> Teacher Last Name</th>
-            <th> Teacher Email </th>
-            <th> Mobile Number </th>
+            <th> First Name</th>
+            <th> Last Name</th>
+            <th> Email Address </th>
+            <th> Mobile </th>
+            <th> Gender </th>
+            <th> Date of Birth </th>
             <th> Subject </th>
             <th> Actions </th>
         </tr>
@@ -104,6 +83,8 @@
             <td th:text = "${teacher.lastName}"></td>
             <td th:text = "${teacher.email}"></td>
             <td th:text = "${teacher.mobileNumber}"></td>
+            <td th:text = "${teacher.gender}"></td>
+            <td th:text = "${teacher.dob}"></td>
             <td th:text = "${teacher.subject}"></td>
             <td>
 <!--                <a th:href = "@{/teachers/edit/{id}(id=${teacher.id})}"-->
@@ -112,9 +93,9 @@
 <!--                <a th:href = "@{/teachers/{id}(id=${teacher.id})}"-->
 <!--                   class = "btn btn-danger">Delete</a>-->
 
-                <a href="#" class = "btn btn-primary" onclick="return confirmUpdate();" th:href="@{/teachers/edit/{id}(id=${teacher.id})}">
+                <a href="#" class = "btn btn-primary" onclick="return confirmTeacherUpdate();" th:href="@{/teachers/edit/{id}(id=${teacher.id})}">
                     Update</a>
-                <a href="#" class = "btn btn-danger" onclick="return confirmDelete();" th:href="@{/teachers/{id}(id=${teacher.id})}">
+                <a href="#" class = "btn btn-danger" onclick="return confirmTeacherDelete();" th:href="@{/teachers/{id}(id=${teacher.id})}">
                     Delete</a>
 
             </td>
@@ -144,8 +125,8 @@
             </li>
         </ul>
     </div>
-
-
 </div>
+
+<script src="" th:src="@{/js/scripts.js}"></script>
 </body>
 </html>
