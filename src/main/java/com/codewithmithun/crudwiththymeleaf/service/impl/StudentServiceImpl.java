@@ -51,8 +51,6 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.deleteById(id);
     }
 
-
-
     @Override
     public Page<Student> getAllStudents(Pageable pageable) {
         return studentRepository.findAll(pageable);

@@ -4,6 +4,8 @@ import com.codewithmithun.crudwiththymeleaf.entities.Address;
 import com.codewithmithun.crudwiththymeleaf.entities.Student;
 import com.codewithmithun.crudwiththymeleaf.service.AddressService;
 import com.codewithmithun.crudwiththymeleaf.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ public class StudentController {
     private StudentService studentService;
     @Autowired
     private AddressService addressService;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 
     public StudentController(StudentService studentService) {
         super();
@@ -79,21 +83,10 @@ public class StudentController {
     @GetMapping("/students/view/{studentId}")
     public String viewStudentForm(@PathVariable Long studentId, Model model) {
 
-        System.out.println("Student: "+studentService.getStudentById(studentId));
-        System.out.println("address: "+addressService.getAddressByStudentId(studentId));
+        LOGGER.info("Student: "+studentService.getStudentById(studentId));
+        LOGGER.info("address: "+addressService.getAddressByStudentId(studentId));
         model.addAttribute("student", studentService.getStudentById(studentId));
         model.addAttribute("address", addressService.getAddressByStudentId(studentId));
-        return "view_student";
-    }
-
-
-    // view student
-    @GetMapping("/students/view/{id}/addresses/{addressId}")
-    public String viewStudentForm(@PathVariable Long id,@PathVariable Long addressId, Model model) {
-        System.out.println("Student: "+studentService.getStudentById(id));
-        System.out.println("Student: "+studentService.getStudentById(id));
-        model.addAttribute("student", studentService.getStudentById(id));
-        model.addAttribute("address", addressService.getAddressById(addressId));
         return "view_student";
     }
 
@@ -122,8 +115,31 @@ public class StudentController {
 
     @GetMapping("/students/{id}")
     public String deleteStudent(@PathVariable Long id) {
-        studentService.deleteStudentById(id);
+        LOGGER.info("Delete button triggered");
+
+        // Fetch the address associated with the student, might be null
+        Address studentAddress = addressService.getAddressByStudentId(id);
+
+        // Check if studentAddress is null or if student is null before accessing getId
+        if (studentAddress != null && studentAddress.getStudent() != null) {
+            LOGGER.info("student Address: " + studentAddress.getStudent().getId());
+
+            // Safely compare ids and handle the deletion
+            if (id != null && id.equals(studentAddress.getStudent().getId())) {
+                Long addressId = studentAddress.getId();
+
+                // Delete address if it exists
+                addressService.deleteAddressById(addressId);
+                studentService.deleteStudentById(id);
+            } else {
+                // If the ids don't match, just delete the student
+                studentService.deleteStudentById(id);
+            }
+        } else {
+            // If studentAddress or student is null, delete the student by id
+            LOGGER.info("Address or student is null, only deleting student");
+            studentService.deleteStudentById(id);
+        }
         return "redirect:/students";
     }
-
 }
