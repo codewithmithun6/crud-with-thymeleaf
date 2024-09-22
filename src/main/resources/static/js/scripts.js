@@ -31,7 +31,15 @@
              }
 
               function confirmUpdateAddress() {
-                return confirm('Are you sure you want to update this Address?');
+                return confirm('Are you sure you want to update this Student Address?');
+              }
+
+              function confirmUpdateTeacherAddress() {
+              return confirm('Are you sure you want to update this Teacher Address?');
+              }
+
+              function confirmTeacherView() {
+                return confirm('Are you sure you want to View this Teacher?');
               }
 
 

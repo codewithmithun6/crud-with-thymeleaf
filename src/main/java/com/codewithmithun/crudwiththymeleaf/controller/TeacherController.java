@@ -1,9 +1,15 @@
 package com.codewithmithun.crudwiththymeleaf.controller;
 
 
+import com.codewithmithun.crudwiththymeleaf.entities.Address;
 import com.codewithmithun.crudwiththymeleaf.entities.Student;
 import com.codewithmithun.crudwiththymeleaf.entities.Teacher;
+import com.codewithmithun.crudwiththymeleaf.entities.TeacherAddress;
+import com.codewithmithun.crudwiththymeleaf.service.TeacherAddressService;
 import com.codewithmithun.crudwiththymeleaf.service.TeacherService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +21,11 @@ import org.springframework.web.bind.annotation.*;
 public class TeacherController {
 
     private TeacherService teacherService;
+
+    @Autowired
+    private TeacherAddressService teacherAddressService;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TeacherController.class);
 
     public TeacherController(TeacherService teacherService) {
         super();
@@ -35,15 +46,13 @@ public class TeacherController {
         if (keyword != null && !keyword.isEmpty()) {
             teacherPage = teacherService.searchTeachers(keyword, pageable);
         } else {
-            teacherPage = teacherService.getAllTeachers(pageable);
-        }
+            teacherPage = teacherService.getAllTeachers(pageable);        }
 
 
         model.addAttribute("teachers", teacherPage.getContent());  // Current page data
         model.addAttribute("currentPage", page);                   // Current page number
         model.addAttribute("totalPages", teacherPage.getTotalPages()); // Total pages
         model.addAttribute("search", keyword);
-
 
         return "teachers";
     }
@@ -90,14 +99,48 @@ public class TeacherController {
         teacherService.updateTeacher(existingTeacher);
         return "redirect:/teachers";
     }
-
     // handler method to handle delete teacher request
 
+    // teacher delete handler
     @GetMapping("/teachers/{id}")
     public String deleteTeacher(@PathVariable Long id) {
-        teacherService.deleteTeacherById(id);
+        LOGGER.info("Delete button triggered");
+
+        // Fetch the address associated with the student, might be null
+        TeacherAddress teacherAddress = teacherAddressService.getTeacherAddressByTeacherId(id);
+
+        // Check if studentAddress is null or if student is null before accessing getId
+        if (teacherAddress != null && teacherAddress.getTeacher() != null) {
+            LOGGER.info("Teacher Address: " + teacherAddress.getTeacher().getId());
+
+            // Safely compare ids and handle the deletion
+            if (id != null && id.equals(teacherAddress.getTeacher().getId())) {
+                Long addressId = teacherAddress.getId();
+
+                // Delete address if it exists
+                teacherAddressService.deleteTeacherAddressById(addressId);
+                teacherService.deleteTeacherById(id);
+            } else {
+                // If the ids don't match, just delete the student
+                teacherService.deleteTeacherById(id);
+            }
+        } else {
+            // If studentAddress or student is null, delete the student by id
+            LOGGER.info("Address or student is null, only deleting student");
+            teacherService.deleteTeacherById(id);
+        }
         return "redirect:/teachers";
     }
 
+    // view teacher
+    @GetMapping("/teachers/view/{teacherId}")
+    public String viewTeacherForm(@PathVariable Long teacherId, Model model) {
+
+        System.out.println("Teacher: "+teacherService.getTeacherById(teacherId));
+        System.out.println("address: "+teacherAddressService.getTeacherAddressByTeacherId(teacherId));
+        model.addAttribute("teacher", teacherService.getTeacherById(teacherId));
+        model.addAttribute("address", teacherAddressService.getTeacherAddressByTeacherId(teacherId));
+        return "view_teacher";
+    }
 
 }

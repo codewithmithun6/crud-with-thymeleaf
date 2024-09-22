@@ -3,7 +3,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Student Management System</title>
-    <title>Student Details</title>
+    <title>Teacher Details</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -11,11 +11,6 @@
     <!-- Ensure proper CSS path -->
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 
-    <script>
-        function confirmUpdate() {
-            return confirm('Are you sure you want to Update this student?');
-        }
-    </script>
 </head>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -39,7 +34,7 @@
 <br>
 <br>
 
-    <title>Student Details</title>
+    <title>Teacher Details</title>
     <style type="text/css">
         span {
             display: inline-block;
@@ -50,18 +45,18 @@
     </head>
     <body>
     <div align="center">
-        <h2>Student Details</h2>
-        <span>First Name:</span><span th:text="${student.firstName}"></span><br/>
-        <span>Last Name:</span><span th:text="${student.lastName}"></span><br/>
-        <span>Email:</span><span th:text="${student.email}"></span><br/>
-        <span>Mobile:</span><span th:text="${student.parentsMobile}"></span><br/>
-        <span>Gender:</span><span th:text="${student.gender}"></span><br/>
-        <span>Date of Birth</span><span th:text="${student.dob}"></span><br/>
-        <span>Department:</span><span th:text="${student.department}"></span><br/>
-
+        <h2>Teacher Details</h2>
+        <span>First Name:</span><span th:text="${teacher.firstName}"></span><br/>
+        <span>Last Name:</span><span th:text="${teacher.lastName}"></span><br/>
+        <span>Email:</span><span th:text="${teacher.email}"></span><br/>
+        <span>Mobile Number:</span><span th:text="${teacher.mobileNumber}"></span><br/>
+        <span>Gender:</span><span th:text="${teacher.gender}"></span><br/>
+        <span>Date of Birth</span><span th:text="${teacher.dob}"></span><br/>
+        <span>Subject:</span><span th:text="${teacher.subject}"></span><br/>
     </div>
+
     <div th:if="${address != null}" align="center">
-        <h3 align="center">Student Address</h3>
+        <h3 align="center">Teacher Address</h3>
         <span>State:</span><span th:text="${address.state}"></span><br/>
         <span>City:</span><span th:text="${address.city}"></span><br/>
         <span>Street:</span><span th:text="${address.street}"></span><br/>
@@ -71,9 +66,9 @@
     </div>
 
     <div align="center">
-        <a href="/students" class="btn btn-primary">Back to List</a>
+        <a href="/teachers" class="btn btn-primary">Back to List</a>
 
-        <a href="#" class = "btn btn-success" onclick="return confirmUpdateAddress();" th:href="@{/addresses/new/{id}(id=${student.id})}">
+        <a href="#" class = "btn btn-success" onclick="return confirmUpdateTeacherAddress();" th:href="@{/teachers_addresses/new/{id}(id=${teacher.id})}">
         Update Address</a>
     </div>
 

@@ -87,16 +87,14 @@
             <td th:text = "${teacher.dob}"></td>
             <td th:text = "${teacher.subject}"></td>
             <td>
-<!--                <a th:href = "@{/teachers/edit/{id}(id=${teacher.id})}"-->
-<!--                   class = "btn btn-primary">Update</a>-->
 
-<!--                <a th:href = "@{/teachers/{id}(id=${teacher.id})}"-->
-<!--                   class = "btn btn-danger">Delete</a>-->
+             <a href="#" class = "btn btn-primary" onclick="return confirmTeacherUpdate();" th:href="@{/teachers/edit/{id}(id=${teacher.id})}">
+                Update</a>
+             <a href="#" class = "btn btn-danger" onclick="return confirmTeacherDelete();" th:href="@{/teachers/{id}(id=${teacher.id})}">
+                Delete</a>
 
-                <a href="#" class = "btn btn-primary" onclick="return confirmTeacherUpdate();" th:href="@{/teachers/edit/{id}(id=${teacher.id})}">
-                    Update</a>
-                <a href="#" class = "btn btn-danger" onclick="return confirmTeacherDelete();" th:href="@{/teachers/{id}(id=${teacher.id})}">
-                    Delete</a>
+             <a href="#" class = "btn btn-success" onclick="return confirmTeacherView();" th:href="@{/teachers/view/{id}(id=${teacher.id})}">
+               View</a>
 
             </td>
         </tr>
