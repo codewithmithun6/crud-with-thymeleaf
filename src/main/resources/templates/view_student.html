@@ -60,11 +60,8 @@
         <span>Department:</span><span th:text="${student.department}"></span><br/>
 
     </div>
-
     <div th:if="${address != null}" align="center">
-
         <h3 align="center">Student Address</h3>
-
         <span>State:</span><span th:text="${address.state}"></span><br/>
         <span>City:</span><span th:text="${address.city}"></span><br/>
         <span>Street:</span><span th:text="${address.street}"></span><br/>
@@ -72,9 +69,6 @@
         <span>Country:</span><span th:text="${address.country}"></span><br/>
         <span>Full Address:</span><span th:text="${address.fullAddress}"></span><br/>
     </div>
-
-
-
 
     <div align="center">
         <a href="/students" class="btn btn-primary">Back to List</a>

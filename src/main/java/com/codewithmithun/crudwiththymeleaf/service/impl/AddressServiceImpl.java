@@ -29,4 +29,9 @@ public class AddressServiceImpl implements AddressService {
     public Address getAddressById(Long id) {
         return addressRepository.findById(id).get();
     }
+
+    @Override
+    public void deleteAddressById(Long addressId) {
+        addressRepository.deleteById(addressId);
+    }
 }

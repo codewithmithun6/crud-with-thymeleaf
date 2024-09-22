@@ -10,4 +10,6 @@ public interface AddressService {
     Address getAddressByStudentId(Long studentId);
 
     Address getAddressById(Long id);
+
+    void deleteAddressById(Long addressId);
 }

@@ -32,4 +32,10 @@ public class TeacherAddressServiceImpl implements TeacherAddressService {
     public TeacherAddress getTeacherAddressById(Long id) {
         return teacherAddressRepository.findById(id).get();
     }
+
+    @Override
+    public void deleteTeacherAddressById(Long addressId) {
+        teacherAddressRepository.deleteById(addressId);
+
+    }
 }

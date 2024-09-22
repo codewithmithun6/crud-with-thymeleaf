@@ -11,4 +11,6 @@ public interface TeacherAddressService {
     TeacherAddress getTeacherAddressByTeacherId(Long teacherId);
 
     TeacherAddress getTeacherAddressById(Long id);
+
+    void deleteTeacherAddressById(Long addressId);
 }
