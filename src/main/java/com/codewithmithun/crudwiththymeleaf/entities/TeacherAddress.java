@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "students_addresses")
-public class Address {
+@Table(name = "teachers_addresses")
+public class TeacherAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Address {
     private String fullAddress;
 
     @OneToOne(cascade = CascadeType.ALL)  // Automatically manage address persistence
-    @JoinColumn(name = "student_id")      // Foreign key in Student table
-    private Student student;
+    @JoinColumn(name = "teacher_id")      // Foreign key in Student table
+    private Teacher teacher;
 
 }

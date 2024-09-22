@@ -3,7 +3,9 @@ package com.codewithmithun.crudwiththymeleaf.controller;
 
 import com.codewithmithun.crudwiththymeleaf.entities.Student;
 import com.codewithmithun.crudwiththymeleaf.entities.Teacher;
+import com.codewithmithun.crudwiththymeleaf.service.TeacherAddressService;
 import com.codewithmithun.crudwiththymeleaf.service.TeacherService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 public class TeacherController {
 
     private TeacherService teacherService;
+
+    @Autowired
+    private TeacherAddressService teacherAddressService;
 
     public TeacherController(TeacherService teacherService) {
         super();
@@ -98,6 +103,34 @@ public class TeacherController {
         teacherService.deleteTeacherById(id);
         return "redirect:/teachers";
     }
+
+
+    // view teacher
+    @GetMapping("/teachers/view/{teacherId}")
+    public String viewTeacherForm(@PathVariable Long teacherId, Model model) {
+
+        System.out.println("Teacher: "+teacherService.getTeacherById(teacherId));
+        System.out.println("address: "+teacherAddressService.getTeacherAddressByTeacherId(teacherId));
+        model.addAttribute("teacher", teacherService.getTeacherById(teacherId));
+        model.addAttribute("address", teacherAddressService.getTeacherAddressByTeacherId(teacherId));
+        return "view_teacher";
+    }
+
+//     view student
+    @GetMapping("/teachers/view/{id}/addresses/{addressId}")
+    public String viewTeacherForm(@PathVariable Long id,@PathVariable Long addressId, Model model) {
+        System.out.println("Student: "+teacherService.getTeacherById(id));
+        System.out.println("Student: "+teacherService.getTeacherById(id));
+        model.addAttribute("student", teacherService.getTeacherById(id));
+        model.addAttribute("address", teacherAddressService.getTeacherAddressById(addressId));
+        return "view_teacher";
+    }
+
+
+
+
+
+
 
 
 }
