@@ -38,9 +38,9 @@
 
             <li>
                 <!-- Search Form -->
-                <form th:action="@{/teachers}" method="get">
-                    <input type="text" name="keyword" placeholder="Search teachers..." th:value="${keyword}" />
-                    <button type="submit">Search</button>
+                <form class="d-flex" th:action="@{/teachers}" method="get">
+                    <input type="text" class="form-control me-2" name="keyword" placeholder="Search teachers..." th:value="${keyword}" />
+                    <button type="submit" class= "btn btn-info" >Search</button>
                 </form>
             </li>
         </ul>
@@ -54,8 +54,8 @@
 
     <div class = "row">
         <div class = "col-lg-3">
-            <a th:href = "@{/teachers/new}" class = "btn btn-primary btn-sm mb-3"> Add Teacher</a>
-            <a th:href = "@{/teachers}" class = "btn btn-primary btn-sm mb-3"> Show All Teachers</a>
+            <a th:href = "@{/teachers/new}" class = "btn btn-success btn-sm mb-3"> Add Teacher</a>
+            <a th:href = "@{/teachers}" class = "btn btn-info btn-sm mb-3"> Show All Teachers</a>
         </div>
 
         <div class="header">
