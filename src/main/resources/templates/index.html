@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{
+            background-image: url('/img/1.png'); /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        /* Position login button to the top-right */
+<!--        .login-btn{-->
+<!--            position: absolute;-->
+<!--            top: 20px;-->
+<!--            right: 20px;-->
+        }
+    </style>
+</head>
+<body>
+<!-- Login Button in the top-right corner -->
+<a th:href="@{/login}" class="btn btn-primary login-btn">Login</a>
+
+<!-- Content Section -->
+<div class="container text-center h-100 d-flex flex-column justify-content-center">
+    <h1 class="text-green">Welcome to the Student Management System</h1>
+    <p class="lead text-green">Manage student data easily and efficiently.</p>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

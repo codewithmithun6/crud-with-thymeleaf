@@ -48,7 +48,7 @@
 </nav>
 
 <div class ="container">
-    <div class = "row">
+    <div class = "row" >
         <h1> List Students </h1>
     </div>
 
@@ -57,6 +57,10 @@
             <a th:href = "@{/students/new}" class = "btn btn-success btn-sm mb-3"> Add Student</a>
             <a th:href = "@{/students}" class = "btn btn-info btn-sm mb-3"> Show All Students </a>
 
+        </div>
+        <div>
+            <!-- Login Button in the top-right corner -->
+            <a th:href="@{/}" class="btn btn-primary login-btn">Logout</a>
         </div>
         <div class="header">
             <!-- Time Display -->

@@ -51,4 +51,26 @@
                     border-radius: 5px; /* Optional: rounded corners */
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: shadow for effect */
                 }
+
+  /* Full-page background image */
+        /*  body{
+              background-image: url('/img/1.png'); *//* Replace with your image *//*
+              background-size: cover;
+              background-position: center;
+              height: 100vh;
+              margin: 0;
+              padding: 0;
+          }
+          *//* Position login button to the top-right *//*
+          .login-btn index{
+              position: absolute;
+              top: 20px;
+              right: 20px;
+          }*/
+
+           /* Position login button to the top-right */
+                  .login-btn{
+                      position: absolute;
+                      top: 20px;
+                      right: 20px;
     </style>
